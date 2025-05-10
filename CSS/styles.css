@@ -38,7 +38,7 @@ a:hover {
 #terminal {
     padding: 20px;
     white-space: pre-wrap;
-    color: lime;
+    color: #00ff00;
     background-color: rgba(45, 49, 76, 0.521);
     backdrop-filter: blur(10px);
     max-height: 500px;
@@ -49,6 +49,13 @@ a:hover {
 }
 #terminal a {
     color: lime;
+}
+#terminal img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: max 20px;
+    width: 70px;
 }
 
 .workplace {
@@ -65,7 +72,7 @@ a:hover {
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
     backdrop-filter: blur(10px);
-    border-bottom: 3px solid rgb(0, 0, 0);
+    border-bottom: 2px solid rgb(0, 0, 0);
     padding: 10px;
     gap: 5px;
     background-color: rgba(27, 31, 31, 0.5);
@@ -98,7 +105,6 @@ a:hover {
     overflow: hidden;
     font-family: monospace;
     backdrop-filter: blur(10px);
-    /*#000000BD*/
 }
 
 section {

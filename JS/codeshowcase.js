@@ -1,7 +1,7 @@
 const texts = [
   "//C\n\n#include <stdio.h>\n\nint main() {\n\tprintf(\"Hello, World!\");\n\treturn 0;\n}",
   "//Python\n\nprint(\"Hello, World!\")",
-  "//C++\n\n#include <iostream>\n\nint main() {\n\tcout << \"Hello, World!\";\n\treturn 0;\n}",
+  "//C++\n\n#include <iostream>\n\nint main() {\n\tstd::cout << \"Hello, World!\";\n\treturn 0;\n}",
   "//JavaScript\n\nconsole.log(\"Hello, World!\");",
 ];
 

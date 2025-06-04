@@ -1,4 +1,4 @@
-const apiKey = "a3a654f36351672475131753b6ae72d2";  
+const apiKey = "//API key";  
 const miasto = "Krasnik,PL";
 const url = `https://api.openweathermap.org/data/2.5/weather?q=${miasto}&appid=${apiKey}&units=metric&lang=pl`;
 

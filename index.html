@@ -17,7 +17,14 @@
     <div class="content">
         <script src="JS/translator.js" defer></script>
         <nav>
-            <a onclick=toggleLanguage() id="image"><img src="Images/pl.png"></a>
+            <a onclick=changeLang() id="image"><img src="Images/pl.png"></a>
+            <script>
+                function changeLang() {
+                    toggleLanguage();
+                    dcStatusLang();
+                    przelaczJezykDC();
+                }
+            </script>
             <div style="display: flex; align-items: center; text-shadow: 0px 10px 8px rgb(87, 87, 87); gap: 5px;">
                 <p id="time">Time in my country: </p>
                 <strong id="localTime">00.00<script src="JS/time.js"></script></strong>
@@ -29,7 +36,7 @@
         </nav>
         <header>
             <div class="linkBar">
-                <a class="discord" href="https://discord.gg/TSECfwpZ" target="_blank">
+                <a class="discord" href="https://discord.gg/Z7x84hY6" target="_blank">
                     <img src="Images/discord.png" alt="Discord">
                 </a>
                 <a class="github" href="https://github.com/tymianekk" target="_blank">
@@ -39,7 +46,10 @@
                     <img src="Images/email.png">
                 </a>
             </div>
-            <h1>tymianekk</h1>
+            <div class="nickname">
+                <h1>tymianekk</h1>
+                <div id="discord-status">Loading...</div><script src="JS/discord.js"></script>
+            </div>
             <p id="desc">A passionate programmer and front-end web developer from Poland</p>
             <div class="languages">
                 <img src="Images/html.png">
@@ -78,8 +88,6 @@ I also want to learn some back-end web development.
 <strong>February 2025</strong> - Started learning C and returned to Python<br>
 <strong>April 2025</strong> - Began learning C++
             </div>
-        </section>
-        <section>
             <div class="terminal" id="tools">
 ~$ tools<br>
 <strong>Devices: </strong>Mac Mini M1, Raspberry PI 5
@@ -96,14 +104,36 @@ I also want to learn some back-end web development.
 
 <a href="https://about-tymianekk.netlify.app" target="_blank">This page</a> - HTML, CSS, JS
             </div>
+            <div class="terminal" id="discord-div">
+~$ discord
+<script src="JS/discord2.js"></script>
+<div id="game-div">
+    <div class="image-status">
+        <img src="Images/discord-prof.jpg" style="border-radius: 32px;">
+        <div id="status-mini-icon"><div id="status-mini-icon-2"></div></div>
+    </div>
+    <div class="status-div">
+        <strong>tymianekk_</strong>
+        <p id="status"></p>
+        <p id="game"></p>
+        <strong id="game-time"></strong>
+    </div>
+</div>
+            </div>
             <div class="terminal" id="info">
 ~$ info <br>
 Domain coming soon!<br>
-Version 2.2<br>
+Version 2.5<br>
 Thanks <a href="https://kotokk.dev" target="_blank">@kotokk_dev</a> for telling me what to change.
             </div>
+            <div class="terminal" id="changelog">
+~$ changelog <br>
+<strong>Last update: </strong>1.07.2025<br>
+<strong>Version 2.5</strong><br>
+Added changelog, improved Discord notes, fixed bugs
+            </div>
         </section>
-        <footer id="footer">@tymianekk 2025. Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik"> Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> <a href="https://www.flaticon.com/free-icons/usa" title="usa icons">Usa icons created by GeekClick - Flaticon</a></footer>
+        <footer id="footer">@tymianekk 2025. Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik"> Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> <a href="https://www.flaticon.com/free-icons/usa" title="usa icons">Usa icons created by GeekClick - Flaticon</a><a href="https://www.flaticon.com/free-icons/sky" title="sky icons">Sky icons created by kosonicon - Flaticon</a> Icons made by <a href="https://www.flaticon.com/authors/royyan-wijaya" title="Royyan Wijaya"> Royyan Wijaya </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com'</a><a href="https://www.flaticon.com/free-icons/rainy-night" title="rainy night icons">Rainy night icons created by Rahul Kaklotar - Flaticon</a> Icons made by <a href="https://www.flaticon.com/authors/slidicon" title="Slidicon"> Slidicon </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com'</a><a href="https://www.flaticon.com/free-icons/snow" title="snow icons">Snow icons created by pancaza - Flaticon</a></footer>
     </div>
     <canvas id="codedrop"></canvas>
     <script src="JS/background.js"></script>

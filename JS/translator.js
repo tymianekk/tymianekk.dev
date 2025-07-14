@@ -41,14 +41,14 @@ I also want to learn some back-end web development.
         info: `
 ~$ info <br>
 Domain coming soon!<br>
-Version 2.5<br>
+Version 2.6<br>
 Thanks <a href="https://kotokk.dev" target="_blank">@kotokk_dev</a> for telling me what to change.
         `,
         changelog: `
 ~$ changelog <br>
-<strong>Last update: </strong>1.07.2025<br>
-<strong>Version 2.5</strong><br>
-Added changelog, improved Discord notes, fixed bugs
+<strong>Last update: </strong>14.07.2025<br>
+<strong>Version 2.6</strong><br>
+Added GitHub stats and most used languages
         `,
         footer: `
 @tymianekk 2025. Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik"> Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> <a href="https://www.flaticon.com/free-icons/usa" title="usa icons">Usa icons created by GeekClick - Flaticon</a><a href="https://www.flaticon.com/free-icons/sky" title="sky icons">Sky icons created by kosonicon - Flaticon</a> Icons made by <a href="https://www.flaticon.com/authors/royyan-wijaya" title="Royyan Wijaya"> Royyan Wijaya </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com'</a><a href="https://www.flaticon.com/free-icons/rainy-night" title="rainy night icons">Rainy night icons created by Rahul Kaklotar - Flaticon</a> Icons made by <a href="https://www.flaticon.com/authors/slidicon" title="Slidicon"> Slidicon </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com'</a><a href="https://www.flaticon.com/free-icons/snow" title="snow icons">Snow icons created by pancaza - Flaticon</a>
@@ -96,14 +96,14 @@ Chcę też nauczyć się trochę back-end web developmentu.
         info: `
 ~$ info <br>
 Domena nadciąga!<br>
-Wersja 2.5<br>
+Wersja 2.6<br>
 Dziękuję <a href="https://kotokk.dev" target="_blank">@kotokk_dev</a> za pomoc przy tworzeniu strony.
         `,
         changelog: `
 ~$ changelog <br>
-<strong>Ostatni update: </strong>1.07.2025<br>
-<strong>Wersja 2.5</strong><br>
-Dodano changelog, ulepszono notatki z Discorda, naprawiono błędy
+<strong>Ostatni update: </strong>14.07.2025<br>
+<strong>Wersja 2.6</strong><br>
+Dodano statystyki i najczęściej używane języki z GitHuba
         `,
         footer: `
 @tymianekk 2025. Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik"> Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> <a href="https://www.flaticon.com/free-icons/usa" title="usa icons">Usa icons created by GeekClick - Flaticon</a><a href="https://www.flaticon.com/free-icons/sky" title="sky icons">Sky icons created by kosonicon - Flaticon</a> Icons made by <a href="https://www.flaticon.com/authors/royyan-wijaya" title="Royyan Wijaya"> Royyan Wijaya </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com'</a><a href="https://www.flaticon.com/free-icons/rainy-night" title="rainy night icons">Rainy night icons created by Rahul Kaklotar - Flaticon</a> Icons made by <a href="https://www.flaticon.com/authors/slidicon" title="Slidicon"> Slidicon </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com'</a><a href="https://www.flaticon.com/free-icons/snow" title="snow icons">Snow icons created by pancaza - Flaticon</a>

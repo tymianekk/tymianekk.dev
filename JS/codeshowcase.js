@@ -3,6 +3,7 @@ const texts = [
   "//Python\n\nprint(\"Hello, World!\")",
   "//C++\n\n#include <iostream>\n\nint main() {\n\tstd::cout << \"Hello, World!\";\n\treturn 0;\n}",
   "//JavaScript\n\nconsole.log(\"Hello, World!\");",
+  "//PHP\n\n<?php\n\necho 'Hello, World!';\n\n?>"
 ];
 
 const typingSpeed = 100;

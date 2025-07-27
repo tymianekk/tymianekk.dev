@@ -1,28 +1,14 @@
-let jezykAktualny = "en";
 let startCzasuGry = null;
 let interwalCzasu = null;
 
+const statusElementt = document.getElementById("discord-status-map");
 const mapaStatusow = {
-    en: {
-        online: "Online",
-        idle: "Idle",
-        dnd: "Do not disturb",
-        offline: "Offline",
-        gameLabel: "In",
-    },
-    pl: {
-        online: "Dostępny",
-        idle: "Zaraz wracam",
-        dnd: "Nie przeszkadzać",
-        offline: "Niedostępny",
-        gameLabel: "W",
-    }
+        online: statusElementt.dataset.online,
+        idle: statusElementt.dataset.idle,
+        dnd: statusElementt.dataset.dnd,
+        offline: statusElementt.dataset.offline,
+        gameLabel: statusElementt.dataset.in,
 };
-
-function przelaczJezykDC() {
-    jezykAktualny = jezykAktualny === "en" ? "pl" : "en";
-    pobierzStatusDiscord();
-}
 
 function formatujCzas(msStart) {
     const teraz = Date.now();
@@ -69,7 +55,7 @@ async function pobierzStatusDiscord() {
 
         if (dane.success) {
             const surowyStatus = dane.data.discord_status;
-            const statusCzytelny = mapaStatusow[jezykAktualny][surowyStatus] || "Nieznany";
+            const statusCzytelny = mapaStatusow[surowyStatus] || "Nieznany";
             
 
             if (surowyStatus === "online") {
@@ -106,7 +92,7 @@ async function pobierzStatusDiscord() {
             const aktywnosc = dane.data.activities.find(a => a.type === 0);
             if (aktywnosc) {
                 const nazwaGry = aktywnosc.name;
-                const etykietkaGry = mapaStatusow[jezykAktualny].gameLabel;
+                const etykietkaGry = mapaStatusow.gameLabel;
                 elementGry.textContent = `${etykietkaGry} ${nazwaGry}`;
 
 

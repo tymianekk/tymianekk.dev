@@ -1,18 +1,9 @@
-let currentLang = "en"; 
-
+const statusElement = document.getElementById("discord-status-map");
 const statusMap = {
-    en: {
-        online: "Online",
-        idle: "Idle",
-        dnd: "Do not disturb",
-        offline: "Offline"
-    },
-    pl: {
-        online: "Dostępny",
-        idle: "Zaraz wracam",
-        dnd: "Nie przeszkadzać",
-        offline: "Niedostępny"
-    }
+  online: statusElement.dataset.online,
+  idle: statusElement.dataset.idle,
+  dnd: statusElement.dataset.dnd,
+  offline: statusElement.dataset.offline
 };
 
 const statusClasses = {
@@ -21,11 +12,6 @@ const statusClasses = {
     dnd: "status-dnd",
     offline: "status-offline"
 };
-
-function dcStatusLang() {
-    currentLang = currentLang === "en" ? "pl" : "en";
-    getDiscordStatus();
-}
 
 async function getDiscordStatus() {
   const userId = "1085437666692182047"; 
@@ -41,7 +27,7 @@ async function getDiscordStatus() {
     if (data.success) {
       const rawStatus = data.data.discord_status;
       const customStatus = data.data.activities.find(act => act.type === 4);
-      const readableStatus = statusMap[currentLang][rawStatus] || "Nieznany";
+      const readableStatus = statusMap[rawStatus] || "Nieznany";
       const statusClass = statusClasses[rawStatus] || "status-offline";
 
       let displayText = readableStatus;

@@ -1,9 +1,85 @@
+<?php
+$lastupdate = "26.07.2025";
+$version = "2.7";
+
+$language = $_GET['lang'] ?? 'en';
+
+$translations = [
+    'pl' => [
+        'lang_html' => 'pl',
+        'title' => 'O mnie - tymianekk',
+        'time' => 'Czas w moim kraju: ',
+        'weather' => 'Pogoda w moim mieście (Kraśnik, PL): ',
+        'desc' => 'Pełen pasji programista i web deweloper z Polski',
+        'status_online' => 'Dostępny',
+        'status_idle' => 'Zaraz wracam',
+        'status_dnd' => 'Nie przeszkadzać',
+        'status_offline' => 'Niedostępny',
+        'in' => 'W',
+
+        'whoami' => 'Jestem nastolatkiem z Polski z pasją do programowania. Tworzę strony internetowe i proste programy głównie dla zabawy. Bardzo lubię także eksplorować lasy i jeździć na rowerze.',
+
+        'myfutureplans' => 'Narazie programuję głównie dla zabawy, ale planuję nauczyć się bardzo dobrze C++, aby tworzyć bardziej zaawansowane projekty.',
+
+        'myprogrammingjourney' => '<strong>Marzec 2023</strong> - Pierwszy raz spróbowałem programowania (Python), ale prawie nic się nie nauczyłem.<br>
+<strong>Listopad 2024</strong>  - Wróciłem do programowania i dałem mu drugą szansę (front-end web development)<br>
+<strong>Luty 2025</strong> - Zacząłem uczyć się C i wróciłem do Pythona<br>
+<strong>Kwiecień 2025</strong> - Zacząłem uczyć się C++<br>
+<strong>Lipiec/Sierpień 2025</strong> - Zacząłem uczyć się PHP',
+
+        'tools' => '<strong>Urządzenia: </strong>Mac Mini M1, Raspberry PI 5
+
+<strong>OS: </strong>MacOS 15 Sequoia, Raspberry PI OS (Raspbian)
+
+<strong>Edytor kodu: </strong>Visual Studio Code',
+        
+        'changelog' => '<strong>Ostatni update: </strong>'.$lastupdate.'<br>
+<strong>Version </strong>'.$version.'<br>
+Dodano tłumaczenie w PHP (zamiast tego JS), zakupiono domenę'
+    ],
+    'en' => [
+        'lang_html' => 'en',
+        'title' => 'About me - tymianekk',
+        'time' => 'Time in my country: ',
+        'weather' => 'Weather in my city (Kraśnik, PL): ',
+        'desc' => 'A passionate programmer and web developer from Poland',
+        'status_online' => 'Online',
+        'status_idle' => 'Idle',
+        'status_dnd' => 'Do not disturb',
+        'status_offline' => 'Offline',
+        'in' => 'In',
+
+        'whoami' => 'I\'m a Polish teenager with a passion for programming. I create websites and simple programs mostly for fun. I also really enjoy exploring forests and mountain biking.',
+
+        'myfutureplans' => 'For now, I mostly code for fun, but I plan to learn C++ really well so I can create more powerful and advanced projects.',
+
+        'myprogrammingjourney' => '<strong>March 2023</strong> - First attempt at programming (Python), but I didn’t learn much.<br>
+<strong>November 2024</strong>  - Came back to programming and gave it a second chance (front-end web development)<br>
+<strong>February 2025</strong> - Started learning C and returned to Python<br>
+<strong>April 2025</strong> - Began learning C++<br>
+<strong>July/August 2025</strong> - Started learning PHP',
+
+        'tools' => '<strong>Devices: </strong>Mac Mini M1, Raspberry PI 5
+
+<strong>OS: </strong>MacOS 15 Sequoia, Raspberry PI OS (Raspbian)
+
+<strong>Code editor: </strong>Visual Studio Code',
+        
+        'changelog' => '<strong>Last update: </strong>'.$lastupdate.'<br>
+<strong>Version </strong>'.$version.'<br>
+Added translation in PHP (instead of in JS), bought a domain'
+    ]
+];
+
+$translation = $translations[$language] ?? $translations['en'];
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= htmlspecialchars($translation['lang_html'], ENT_QUOTES)?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="title">About me - tymianekk</title>
+    <title><?= htmlspecialchars($translation['title'], ENT_QUOTES)?></title>
     <link rel="stylesheet" href="CSS/styles.css">
     <link rel="icon" type="image/png" href="Images/web-programming.png"/>
     <style>
@@ -12,25 +88,26 @@
         font-style: normal;
         }
     </style>
+    <div id="discord-status-map"
+        data-online="<?= htmlspecialchars($translation['status_online'], ENT_QUOTES) ?>"
+        data-idle="<?= htmlspecialchars($translation['status_idle'], ENT_QUOTES) ?>"
+        data-dnd="<?= htmlspecialchars($translation['status_dnd'], ENT_QUOTES) ?>"
+        data-offline="<?= htmlspecialchars($translation['status_offline'], ENT_QUOTES) ?>"
+        data-in="<?= htmlspecialchars($translation['in'], ENT_QUOTES) ?>">
+</div>
 </head>
 <body>
     <div class="content">
-        <script src="JS/translator.js" defer></script>
         <nav>
-            <a onclick=changeLang() id="image"><img src="Images/pl.png"></a>
-            <script>
-                function changeLang() {
-                    toggleLanguage();
-                    dcStatusLang();
-                    przelaczJezykDC();
-                }
-            </script>
+            <a href="?lang=<?= $language === 'pl' ? 'en' : 'pl' ?>">
+                <img src="Images/<?= $language === 'pl' ? 'en.png' : 'pl.png' ?>">
+            </a>
             <div style="display: flex; align-items: center; text-shadow: 0px 10px 8px rgb(87, 87, 87); gap: 5px;">
-                <p id="time">Time in my country: </p>
+                <p><?= htmlspecialchars($translation['time'], ENT_QUOTES)?></p>
                 <strong id="localTime">00.00<script src="JS/time.js"></script></strong>
             </div>
             <div style="display: flex; align-items: center; text-shadow: 0px 10px 8px rgb(87, 87, 87); gap: 5px;">
-                <p id="weatherInfo">Weather in my city (Kraśnik, PL): </p>
+                <p><?= htmlspecialchars($translation['weather'], ENT_QUOTES)?></p>
                 <p id="weather"><script src="JS/weather.js"></script></p>
             </div>
         </nav>
@@ -50,11 +127,12 @@
                 <h1>tymianekk</h1>
                 <div id="discord-status">Loading...</div><script src="JS/discord.js"></script>
             </div>
-            <p id="desc">A passionate programmer and front-end web developer from Poland</p>
+            <p><?= htmlspecialchars($translation['desc'], ENT_QUOTES) ?></p>
             <div class="languages">
                 <img src="Images/html.png">
                 <img src="Images/css.png">
                 <img src="Images/js.png">
+                <img src="Images/php.png">
                 <img src="Images/python.png">
                 <img src="Images/c.png">
                 <img src="Images/cpp.png">
@@ -71,38 +149,21 @@
             </div>
         </header>
         <section>
-            <div class="terminal" id="whoami">
+            <div class="terminal">
 ~$ whoami <br>
-I'm a Polish teenager with a passion for programming. I create websites and simple programs mostly for fun. I also really enjoy math and learning foreign languages. I speak Polish, English, and Spanish.
+<?= $translation['whoami']?>
                         </div>
-            <div class="terminal" id="myfutureplans">
+            <div class="terminal">
 ~$ myfutureplans <br>
-For now, I mostly code for fun, but I plan to learn C++ really well so I can create more powerful and advanced projects.
-
-I also want to learn some back-end web development.
+<?= $translation['myfutureplans'] ?>
             </div>
-            <div class="terminal" id="myprogrammingjourney">
+            <div class="terminal">
 ~$ myprogrammingjourney<br>
-<strong>March 2023</strong> - First attempt at programming (Python), but I didn’t learn much.<br>
-<strong>November 2024</strong>  - Came back to programming and gave it a second chance (front-end web development)<br>
-<strong>February 2025</strong> - Started learning C and returned to Python<br>
-<strong>April 2025</strong> - Began learning C++
+<?= $translation['myprogrammingjourney'] ?>
             </div>
-            <div class="terminal" id="tools">
+            <div class="terminal">
 ~$ tools<br>
-<strong>Devices: </strong>Mac Mini M1, Raspberry PI 5
-
-<strong>OS: </strong>MacOS 15 Sequoia, Raspberry PI OS (Raspbian)
-
-<strong>Code editor: </strong>Visual Studio Code
-            </div>
-            <div class="terminal" id="projects">
-~$ projects <br>
-<a href="https://github.com/tymianekk/Terminal-Cat-" target="_blank">Cat simulator in the terminal</a> - C++
-
-<a href="https://github.com/tymianekk/Geometry-calculator" target="_blank">Geometry calculator</a> - C++
-
-<a href="https://about-tymianekk.netlify.app" target="_blank">This page</a> - HTML, CSS, JS
+<?= $translation['tools'] ?>
             </div>
             <div class="terminal" id="discord-div">
 ~$ discord
@@ -120,17 +181,9 @@ I also want to learn some back-end web development.
     </div>
 </div>
             </div>
-            <div class="terminal" id="info">
-~$ info <br>
-Domain coming soon!<br>
-Version 2.6<br>
-Thanks <a href="https://kotokk.dev" target="_blank">@kotokk_dev</a> for telling me what to change.
-            </div>
-            <div class="terminal" id="changelog">
+            <div class="terminal">
 ~$ changelog <br>
-<strong>Last update: </strong>14.07.2025<br>
-<strong>Version 2.6</strong><br>
-Added GitHub stats and most used languages
+<?= $translation['changelog'] ?>
             </div>
             <div class="terminal" id="github-terminal">            
 ~$ github-stats <br>

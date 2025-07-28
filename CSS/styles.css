@@ -18,6 +18,8 @@ header * {
 }
 
 nav {
+    display: flex;
+    flex-direction: column;
     padding: 10px;
     display: flex;
     align-items: center;
@@ -36,6 +38,13 @@ nav img {
 nav a img:hover {
     width: 45px;
     transform: rotate(360deg);
+}
+nav div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-shadow: 0px 10px 8px rgb(87, 87, 87); 
+    gap: 5px;
 }
 
 
@@ -120,7 +129,6 @@ a:hover {
     color: #00ff00;
     background-color: rgba(45, 49, 76, 0.521);
     backdrop-filter: blur(10px);
-    width: 300px;
     width: 300px;
     overflow: auto;
     border: 5px solid rgb(45, 49, 76);
@@ -302,12 +310,42 @@ canvas {
 
 #status-mini-icon {
    position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 14px;
-      height: 14px;
-      border: 3px solid #2c2f33; 
-      border-radius: 50%;
+   bottom: 0;
+   right: 0;
+   width: 14px;
+   height: 14px;
+   border: 3px solid #2c2f33; 
+   border-radius: 50%;
+}
+
+.congratulations {
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    font-size: 3em;
+    color: gold;
+    animation: neon 1s infinite alternate, hide 1s ease-out 5s forwards;
+    margin-top: 30px;
+}
+
+@keyframes neon {
+    from {
+        text-shadow: 0 0 10px gold, 0 0 20px gold, 0 0 30px orange;
+    }
+    to {
+        text-shadow: 0 0 20px orange, 0 0 30px red, 0 0 40px red;
+    }
+}
+@keyframes hide {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+        display: none;
+    }
 }
 
 @media (max-width: 1115px) {
@@ -334,14 +372,30 @@ canvas {
         align-items: center;
     }
     nav {
+        display: flex;
         flex-direction: column;
     }
     nav a img:hover {
         width: 35px;
     }
+    nav .div {
+        flex-direction: column;
+    }
     footer {
         margin-top: 20px;
+        max-height: 100px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
+
+    footer:hover {
+        max-height: fit-content;
+        white-space: wrap;
+        overflow: auto;
+        text-overflow: none;
+    }
+    
     .nickname {
         justify-content: center;
     }
@@ -392,4 +446,9 @@ canvas {
     .linkBar img {
         justify-content: center;
     }
+
+    .congratulations {
+        font-size: 30px;
+    }
+
 }

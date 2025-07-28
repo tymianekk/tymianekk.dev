@@ -1,6 +1,6 @@
 <?php
-$lastupdate = "26.07.2025";
-$version = "2.7";
+$lastupdate = "28.07.2025";
+$version = "2.8";
 
 $language = $_GET['lang'] ?? 'en';
 
@@ -37,7 +37,7 @@ $translations = [
         
         'changelog' => '<strong>Ostatni update: </strong>'.$lastupdate.'<br>
 <strong>Version </strong>'.$version.'<br>
-Dodano tłumaczenie w PHP (zamiast tego JS), zakupiono domenę'
+Dodano counter wizyt na stronie'
     ],
     'en' => [
         'lang_html' => 'en',
@@ -71,7 +71,7 @@ Dodano tłumaczenie w PHP (zamiast tego JS), zakupiono domenę'
         
         'changelog' => '<strong>Last update: </strong>'.$lastupdate.'<br>
 <strong>Version </strong>'.$version.'<br>
-Added translation in PHP (instead of in JS), bought a domain'
+Added visitors counter'
     ]
 ];
 

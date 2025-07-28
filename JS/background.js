@@ -6,7 +6,6 @@ let height = window.innerHeight;
 canvas.width = width;
 canvas.height = height;
 
-// Funkcja sprawdzająca, czy to urządzenie mobilne
 function isMobile() {
   return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
@@ -38,7 +37,6 @@ const codeLines = [
   'document.getElementById("tymianekk")',
 ];
 
-// Konfiguracja zależna od urządzenia
 const isOnMobile = isMobile();
 const dropCount = isOnMobile ? 40 : 100;
 const fontSize = isOnMobile ? 12 : 16;

@@ -10,6 +10,8 @@ $translations = [
         'title' => 'O mnie - tymianekk',
         'time' => 'Czas w moim kraju: ',
         'weather' => 'Pogoda w moim mieście (Kraśnik, PL): ',
+        'unique_visitors' => 'Unikalni odwiedzający: ',
+        'visits_today' => 'Wizyty dzisiaj: ',
         'desc' => 'Pełen pasji programista i web deweloper z Polski',
         'status_online' => 'Dostępny',
         'status_idle' => 'Zaraz wracam',
@@ -42,6 +44,8 @@ Dodano tłumaczenie w PHP (zamiast tego JS), zakupiono domenę'
         'title' => 'About me - tymianekk',
         'time' => 'Time in my country: ',
         'weather' => 'Weather in my city (Kraśnik, PL): ',
+        'unique_visitors' => 'Unique visitors: ',
+        'visits_today' => 'Visits today: ',
         'desc' => 'A passionate programmer and web developer from Poland',
         'status_online' => 'Online',
         'status_idle' => 'Idle',
@@ -72,6 +76,57 @@ Added translation in PHP (instead of in JS), bought a domain'
 ];
 
 $translation = $translations[$language] ?? $translations['en'];
+
+$uniqueVisitorsJson = __DIR__ . '/uniqueVisitors.json';
+
+if (file_exists($uniqueVisitorsJson)) {
+    $IPs = json_decode(file_get_contents($uniqueVisitorsJson), true);
+    if (!is_array($IPs)) {
+        $IPs = [];
+    }
+} else {
+    $IPs = [];
+}
+
+$visitorsIp = $_SERVER['REMOTE_ADDR'] ?? '';
+if ($visitorsIp && !in_array($visitorsIp, $IPs, true)) {
+    $IPs[] = $visitorsIp;
+    file_put_contents(
+        $uniqueVisitorsJson,
+        json_encode($IPs, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
+    );
+}
+
+$uniqueVisitors = count($IPs);
+
+$visitsTodayJson = __DIR__ . '/visitsToday.json';
+$today = date('Y-m-d');
+
+if (!file_exists($visitsTodayJson)) {
+    $start = [
+        'visits' => 0,
+        'date' => $today
+    ];
+    file_put_contents($visitsTodayJson, json_encode($start));
+}
+
+$json = file_get_contents($visitsTodayJson);
+$data = json_decode($json, true);
+
+if ($data['date'] != $today) {
+    $data['visits'] = 0;
+    $data['date'] = $today;
+}
+
+$congratulations = false;
+
+if ($data['visits'] === 0) {
+    $congratulations = true;
+}
+
+$data['visits']++;
+
+file_put_contents($visitsTodayJson, json_encode($data, JSON_PRETTY_PRINT));
 ?>
 
 <!DOCTYPE html>
@@ -94,26 +149,35 @@ $translation = $translations[$language] ?? $translations['en'];
         data-dnd="<?= htmlspecialchars($translation['status_dnd'], ENT_QUOTES) ?>"
         data-offline="<?= htmlspecialchars($translation['status_offline'], ENT_QUOTES) ?>"
         data-in="<?= htmlspecialchars($translation['in'], ENT_QUOTES) ?>">
-</div>
+    </div>
 </head>
 <body>
     <div class="content">
         <nav>
-            <a href="?lang=<?= $language === 'pl' ? 'en' : 'pl' ?>">
-                <img src="Images/<?= $language === 'pl' ? 'en.png' : 'pl.png' ?>">
-            </a>
-            <div style="display: flex; align-items: center; text-shadow: 0px 10px 8px rgb(87, 87, 87); gap: 5px;">
-                <p><?= htmlspecialchars($translation['time'], ENT_QUOTES)?></p>
-                <strong id="localTime">00.00<script src="JS/time.js"></script></strong>
+            <div class="div">
+                <a href="?lang=<?= $language === 'pl' ? 'en' : 'pl' ?>">
+                    <img src="Images/<?= $language === 'pl' ? 'en.png' : 'pl.png' ?>">
+                </a>
+                <div>
+                    <p><?= htmlspecialchars($translation['time'], ENT_QUOTES)?></p>
+                    <strong id="localTime">00.00<script src="JS/time.js"></script></strong>
+                </div>
+                <div>
+                    <p><?= htmlspecialchars($translation['weather'], ENT_QUOTES)?></p>
+                    <p id="weather"><script src="JS/weather.js"></script></p>
+                </div>
             </div>
-            <div style="display: flex; align-items: center; text-shadow: 0px 10px 8px rgb(87, 87, 87); gap: 5px;">
-                <p><?= htmlspecialchars($translation['weather'], ENT_QUOTES)?></p>
-                <p id="weather"><script src="JS/weather.js"></script></p>
+            <div style="display: flex; flex-direction: row;">
+                <?= htmlspecialchars($translation['unique_visitors'], ENT_QUOTES) ?>
+                <strong><?= htmlspecialchars($uniqueVisitors, ENT_QUOTES) ?></strong>
+                <?= htmlspecialchars($translation['visits_today'], ENT_QUOTES) ?>
+                <strong><?= htmlspecialchars($data['visits'], ENT_QUOTES) ?></strong>
+                <img src="Images/unique-visitor.png">
             </div>
         </nav>
         <header>
             <div class="linkBar">
-                <a class="discord" href="https://discord.gg/Z7x84hY6" target="_blank">
+                <a class="discord" href="https://discord.com/users/1085437666692182047s" target="_blank">
                     <img src="Images/discord.png" alt="Discord">
                 </a>
                 <a class="github" href="https://github.com/tymianekk" target="_blank">
@@ -194,7 +258,18 @@ $translation = $translations[$language] ?? $translations['en'];
 <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=tymianekk&layout=compact&theme=dark" alt="Top Langs" width="300px"/>
             </div>
         </section>
-        <footer id="footer">@tymianekk 2025. Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik"> Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> <a href="https://www.flaticon.com/free-icons/usa" title="usa icons">Usa icons created by GeekClick - Flaticon</a><a href="https://www.flaticon.com/free-icons/sky" title="sky icons">Sky icons created by kosonicon - Flaticon</a> Icons made by <a href="https://www.flaticon.com/authors/royyan-wijaya" title="Royyan Wijaya"> Royyan Wijaya </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com'</a><a href="https://www.flaticon.com/free-icons/rainy-night" title="rainy night icons">Rainy night icons created by Rahul Kaklotar - Flaticon</a> Icons made by <a href="https://www.flaticon.com/authors/slidicon" title="Slidicon"> Slidicon </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com'</a><a href="https://www.flaticon.com/free-icons/snow" title="snow icons">Snow icons created by pancaza - Flaticon</a></footer>
+        <footer id="footer">@tymianekk 2025. Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik"> Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> <a href="https://www.flaticon.com/free-icons/usa" title="usa icons">Usa icons created by GeekClick - Flaticon</a><a href="https://www.flaticon.com/free-icons/sky" title="sky icons">Sky icons created by kosonicon - Flaticon</a> Icons made by <a href="https://www.flaticon.com/authors/royyan-wijaya" title="Royyan Wijaya"> Royyan Wijaya </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com'</a><a href="https://www.flaticon.com/free-icons/rainy-night" title="rainy night icons">Rainy night icons created by Rahul Kaklotar - Flaticon</a> Icons made by <a href="https://www.flaticon.com/authors/slidicon" title="Slidicon"> Slidicon </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com'</a><a href="https://www.flaticon.com/free-icons/snow" title="snow icons">Snow icons created by pancaza - Flaticon</a><a href="https://www.flaticon.com/free-icons/visitors" title="visitors icons">Visitors icons created by orvipixel - Flaticon</a></footer>
+    </div>
+    <?php if ($congratulations): ?>
+                <div class="congratulations">🎉 Congratulations! You are the first visitor today! 🎉</div>
+                <canvas id="confetti-canvas"></canvas>
+            <?php endif; ?>
+        
+            <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+            <script>
+                const congratulations = <?= $congratulations ? 'true' : 'false' ?>;
+            </script>
+        <script src="JS/confetti.js"></script>
     <canvas id="codedrop"></canvas>
     <script src="JS/background.js"></script>
 </body>
